@@ -4,32 +4,40 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bangers">
     <title>RoShamBo - Rock Paper Scissors</title>
 </head>
-<body onload="startOver()">
+<body>
+
     <div id="content">
+
         <h1>Let's RoShamBo!</h1>
+
         <p>Best of 5 rounds. Pick an option to get started.</p>
-        <div class="gameOptions">
-            <div class ="option">
+
+        <form class="gameOptions">
+            <label class ="option">
                 <input type="radio" id="rock" name="roshamboOptions" value="rock">
-                <label for="rock">Rock</label></div>
-            <div class ="option">
+                <img src="images/rock.png" id="rockImage" width=250px alt="rock">
+            </label>
+            <label class ="option">
                 <input type="radio" id="paper" name="roshamboOptions" value="paper">
-                <label for="paper">Paper</label></div>
-            <div class ="option">
+                <img src="images/paper.png" width=250px alt="paper">
+            </label>
+            <label class ="option">
                 <input type="radio" id="scissors" name="roshamboOptions" value="scissors">
-                <label for="scissors">Scissors</label></div>
-        </div> 
-        <div id="buttons">
-            <button type="button" id="goButton" onclick="newRound()">Go</button>
-            <button type="button" onclick="startOver()">Start Over</button>
-        </div>
-        <p class="roundNumber"></p>
+                <img src="images/scissors.png" width=250px alt="scissors">
+            </label>
+        </form> 
+
         <p class="roundResult"></p>
+        <p class="roundNumber"></p>
+
+        <div id="buttons">
+            <button type="button">Start Over</button>
+        </div>
     </div>
     
 </body>

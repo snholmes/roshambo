@@ -1,8 +1,14 @@
 var roundNumber = 1;
 var computerWins = 0;
 var playerWins = 0;
+const options = document.querySelectorAll('input');
+const btn = document.querySelector('button');
+
+btn.addEventListener('click', startOver);
+window.onload = startOver;
 
 function newRound() {
+    
     var playerSelection;
     var options = document.getElementsByName('roshamboOptions');
     let optionSelected = false;
@@ -14,20 +20,18 @@ function newRound() {
         } 
     }
 
-    if (!optionSelected) {
-        document.querySelector(".roundNumber").innerHTML = "Please make a selection."
-    } else {
-        determineWinner(playerSelection);
+    determineWinner(playerSelection);
+
         if (roundNumber > 5) {
             if (computerWins > playerWins) {
-                document.querySelector(".roundNumber").innerHTML = "Computer wins the game!";
-                document.getElementById("goButton").disabled = true;
+                document.querySelector(".roundNumber").textContent = "Computer wins the game!";
+
             } else if (playerWins > computerWins) {
-                document.querySelector(".roundNumber").innerHTML = "You win the game!";
-                document.getElementById("goButton").disabled = true;
+                document.querySelector(".roundNumber").textContent = "You win the game!";
             }
+
+            disableGame();
         }
-    }
 }
 
 function determineWinner(playerSelection) {
@@ -48,7 +52,7 @@ function determineWinner(playerSelection) {
         break;
     }
 
-    document.querySelector(".roundNumber").innerHTML = `Round ${roundNumber}. Make a selection!`;
+    document.querySelector(".roundNumber").innerHTML= `Round ${roundNumber}. Make a selection!`;
     document.querySelector(".roundResult").innerHTML = `Computer: ${computerSelection} <br> <br> Your score: ${playerWins} <br> Computer score: ${computerWins}`;
 }
 
@@ -68,7 +72,15 @@ function startOver() {
     roundNumber = 1;
     computerWins = 0;
     playerWins = 0;
-    document.getElementById("goButton").disabled = false;
-    document.querySelector(".roundNumber").innerHTML = 'Round 1. Make a selection!';
-    document.querySelector(".roundResult").innerHTML = "";
+    options.forEach((input) => {
+        input.addEventListener('click', newRound);
+    });
+    document.querySelector(".roundNumber").textContent = 'Round 1. Make a selection!';
+    document.querySelector(".roundResult").textContent = "";
+}
+
+function disableGame() {
+    options.forEach((input) => {
+        input.removeEventListener('click', newRound);
+    });
 }
